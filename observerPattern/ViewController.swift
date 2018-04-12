@@ -13,6 +13,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let log = ActivityLog()
+        let cache = FileCache()
+        let monitor = AttackMonitor()
+        let authM = AuthenticationManger()
+        authM.addObservers(observers: log,cache,monitor)
+        _ = authM.authtnticate(user: "bob", pass: "secret")
+        print("--------")
+        _ = authM.authtnticate(user: "joe", pass: "shhh")
     }
 
     override func didReceiveMemoryWarning() {
